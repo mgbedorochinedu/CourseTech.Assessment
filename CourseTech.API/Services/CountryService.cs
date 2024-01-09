@@ -26,19 +26,20 @@ namespace CourseTech.API.Services
                 if (country == null)
                     return new BaseResponse(false, null, "Country not found.");
 
-                var countryDetails = new CountryDto
+                
+                var result = new 
                 {
-                    PhoneNumber = phoneNumber,
-                    CountryCode = countryCode,
-                    Name = country.Name,
-                    CountryIso = country.CountryIso,
-                    CountryDetails = country.CountryDetails.Select(cd => new CountryDetailDto
+                    number = phoneNumber,
+                    countryCode = country.CountryCode,
+                    country = country.Name,
+                    countryIso = country.CountryIso,                  
+                    CountryDetails = InMemoryDatabase.CountryDetails.Where(x => x.CountryId == country.CountryId).Select(cd => new CountryDetailDto
                     {
                         Operator = cd.Operator,
                         OperatorCode = cd.OperatorCode
                     }).ToList()
                 };
-                return new BaseResponse(true, countryDetails, "Fetched data successful");
+                return new BaseResponse(true, result, "Fetched data successful");
 
             }
             catch (Exception ex)
@@ -46,5 +47,11 @@ namespace CourseTech.API.Services
                 return new BaseResponse(false, null, $"An error occur: {ex.Message}"); //Log should handle this
             }
         }
+
+
+
+
+
+
     }
 }

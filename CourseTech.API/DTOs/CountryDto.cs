@@ -2,7 +2,7 @@
 {
     public class CountryDto
     {
-        public string PhoneNumber { get; set; }
+        public string Number { get; set; }
         public string CountryCode { get; set; }    
         public string Name { get; set; }
         public string CountryIso { get; set; }
