@@ -1,4 +1,8 @@
+using CourseTech.API.Data;
+using CourseTech.API.IService;
+using CourseTech.API.Services;
 using CourseTech.API.Services.CalculateScoreService;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +12,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<ICalculateScoreService, CalculateScoreService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
 
 var app = builder.Build();
 

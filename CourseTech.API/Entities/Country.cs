@@ -1,7 +1,10 @@
-﻿namespace CourseTech.API.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CourseTech.API.Entities
 {
     public class Country
     {
+        [Key]
         public int CountryId { get; set; }
         public string CountryCode { get; set; }
         public string Name { get; set; }
